@@ -8,8 +8,7 @@ public record Run(
         LocalDateTime start_time,
         LocalDateTime end_time,
         Double distance,
-        Location location,
-        Integer version
+        Location location
 )
 {
 
