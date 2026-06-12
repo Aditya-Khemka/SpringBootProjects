@@ -2,15 +2,20 @@ package kh.aditya.runnerz.run;
 
 import java.time.LocalDateTime;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Positive;
+
+import java.time.LocalDateTime;
+
 public record Run(
         Integer id,
-        String title,
+        @NotEmpty String title,
         LocalDateTime start_time,
         LocalDateTime end_time,
-        Double distance,
-        Location location,
-        Integer version
+        @Positive Double distance,
+        Location location
 ) {
+
 
     //manual validation through conditional checks
     public Run {
