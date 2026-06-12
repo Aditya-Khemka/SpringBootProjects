@@ -32,6 +32,6 @@ public class RunController {
         if (run.isPresent()) {
             return run.get();
         }
-        return null ;
+        throw new RunNotFoundException();
     }
 }
