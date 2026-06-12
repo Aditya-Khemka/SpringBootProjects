@@ -7,6 +7,7 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 //We mark this class as a repository
 // now we can access it using Spring methods in other classes
@@ -26,6 +27,24 @@ public class RunRepository {
     //return all runs in the system
     List<Run> getRuns(){
         return runs;
+    }
+
+    /*
+    // Not using this as it may throw an execption if Run is not found
+    Run getRun(int id){
+        return runs.get(id);
+    }
+     */
+
+
+    public Optional<Run> findById(int id) {
+        for (Run run : runs) {
+            if (run.id() == id) {
+                return Optional.of(run);
+            }
+        }
+
+        return Optional.empty();
     }
 
 
