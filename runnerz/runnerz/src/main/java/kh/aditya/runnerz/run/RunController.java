@@ -1,9 +1,7 @@
 package kh.aditya.runnerz.run;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,12 +24,18 @@ public class RunController {
         return runs.getRuns() ;
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     Run findByID(@PathVariable int id){
         Optional<Run> run = runs.findById(id);
         if (run.isPresent()) {
             return run.get();
         }
         throw new RunNotFoundException();
+    }
+
+    @ResponseStatus(HttpStatus.CREATED) //Sends 201 everytime we hit /add successfully (NOT ADD SUCCESS) 
+    @PostMapping("/add")
+    void create(@RequestBody Run run) { //accept a JSON object and add a run to the list
+        runs.createRun(run);
     }
 }

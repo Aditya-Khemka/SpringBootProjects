@@ -47,6 +47,10 @@ public class RunRepository {
         return Optional.empty();
     }
 
+    void createRun(Run run) {
+        runs.add(run);
+    }
+
 
 
 }
