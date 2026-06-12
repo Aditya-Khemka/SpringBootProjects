@@ -33,9 +33,21 @@ public class RunController {
         throw new RunNotFoundException();
     }
 
-    @ResponseStatus(HttpStatus.CREATED) //Sends 201 everytime we hit /add successfully (NOT ADD SUCCESS) 
+    @ResponseStatus(HttpStatus.CREATED) //Sends 201 everytime we hit /add successfully (NOT ADD SUCCESS)
     @PostMapping("/add")
     void create(@RequestBody Run run) { //accept a JSON object and add a run to the list
         runs.createRun(run);
+    }
+
+    @ResponseStatus(HttpStatus.NO_CONTENT) //Random Response code for debugging only
+    @PutMapping("/{id}")
+    void update(@RequestBody Run run, @PathVariable Integer id) {
+        runs.update(run, id);
+    }
+
+    @ResponseStatus(HttpStatus.NOT_ACCEPTABLE)
+    @DeleteMapping("/{ID}") //same as findByID , depends if update , delete or get
+    void delete(@PathVariable Integer ID) {
+        runs.delete(ID);
     }
 }
