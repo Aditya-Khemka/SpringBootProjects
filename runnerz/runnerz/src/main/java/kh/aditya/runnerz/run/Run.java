@@ -8,8 +8,14 @@ public record Run(
         LocalDateTime start_time,
         LocalDateTime end_time,
         Double distance,
-        Location location
-)
-{
+        Location location,
+        Integer version
+) {
 
+    //manual validation through conditional checks
+    public Run {
+        if (end_time.isBefore(start_time)) {
+            throw new IllegalArgumentException("End time cannot be before start time");
+        }
+    }
 }
